@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CS Data - Add User</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQxcHBZ1izt6OLyGRfhB5gP0dRc_xArhE&callback=initAutocomplete&libraries=places&v=weekly"
+    defer
+  ></script>
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <style>
+  .center {
+    margin: auto;
+    width: 10%;
+  }
+  </style>
+
+  <script>
+    var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
+    var loggedInStatus = (window.localStorage.getItem('agentStatus'));
+
+    if(loggedInUser == null){
+      alert("Please log in to continue");
+      window.open ('login.html','_self',false)
+    }
+
+
+
+
+  </script>
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="p-5">
+          <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Add Customer!</h1>
+          </div>
+          <form class="user">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="phone" placeholder="Phone Number">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="state" placeholder="State">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="noteOne" placeholder="Note 1">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="noteTwo" placeholder="Note 2">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="noteThree" placeholder="Note 3">
+            </div>
+
+            </div>
+
+
+            <div class="center">
+              <a  href="#" onclick="validateForm()" id="registerButton"class="btn btn-primary">
+                Add User
+              </a>
+            </div>
+
+            <hr>
+
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+
+
+  <script>
+  var imageUrl = "";
+  var bannerUrl = "";
+  function validateForm() {
+
+    var isDataValid = true;
+
+    var userName = document.getElementById("name").value;
+    var userNumber = document.getElementById("phone").value;
+    var userState = document.getElementById("state").value;
+    var note1 = document.getElementById("noteOne").value;
+    var note2 = document.getElementById("noteTwo").value;
+    var note3 = document.getElementById("noteThree").value;
+
+
+
+    if (userName == "") {
+      alert("Name must be filled out");
+      isDataValid = false;
+    } else if (userNumber == "") {
+      alert("Please enter phone");
+      isDataValid = false;
+    } else if (userState == "") {
+      alert("Please enter state");
+      isDataValid = false;
+    }
+
+    console.log(isDataValid);
+
+
+    if(isDataValid == false){
+      return;
+    } else {
+      var newKey = userNumber;
+      db.child(newKey).set({
+        name: userName,
+        phone:userNumber,
+        state:userState,
+        note1:note1,
+        note2:note2,
+        note3:note3
+      });
+
+      window.open ('customers.html','_self',false)
+
+
+
+    }
+  }
+  </script>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
+    authDomain: "eedc-e65c8.firebaseapp.com",
+    databaseURL: "https://eedc-e65c8.firebaseio.com",
+    projectId: "eedc-e65c8",
+    storageBucket: "eedc-e65c8.appspot.com",
+    messagingSenderId: "393595658709",
+    appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
+    measurementId: "G-RT3T2CXV9K"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database().ref().child("users");
+</script>
+
+
+
+</body>
+
+</html>

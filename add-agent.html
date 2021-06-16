@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CS Data - Add Agent</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQxcHBZ1izt6OLyGRfhB5gP0dRc_xArhE&callback=initAutocomplete&libraries=places&v=weekly"
+    defer
+  ></script>
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <style>
+  .center {
+    margin: auto;
+    width: 10%;
+  }
+  </style>
+
+  <script>
+    var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
+    var loggedInStatus = (window.localStorage.getItem('agentStatus'));
+
+    if(loggedInUser == null){
+      alert("Please log in to continue");
+      window.open ('login.html','_self',false)
+    }
+
+    if(loggedInStatus > 0){
+      alert("Only admin can view this page");
+      window.open ('customers.html','_self',false)
+    }
+
+
+  </script>
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="p-5">
+          <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Add Agent!</h1>
+          </div>
+          <form class="user">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="phone" placeholder="Phone Number">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control form-control-user" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control form-control-user" id="cpassword" placeholder="Confirm Password">
+            </div>
+            </div>
+
+
+            <div class="center">
+              <a  href="#" onclick="validateForm()" id="registerButton"class="btn btn-primary">
+                Add Agent
+              </a>
+            </div>
+
+            <hr>
+
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+
+
+  <script>
+
+  function validateForm() {
+
+    var isDataValid = true;
+
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var cpassword = document.getElementById("cpassword").value;
+
+
+
+    if (name == "") {
+      alert("Name must be filled out");
+      isDataValid = false;
+    } else if (phone == "") {
+      alert("Please enter phone");
+      isDataValid = false;
+    } else if (email == "") {
+      alert("Please enter email");
+      isDataValid = false;
+    } else if (password == "" || cpassword == "") {
+      alert("Please enter password");
+      isDataValid = false;
+    }
+
+    console.log(isDataValid);
+
+    var currentdate = new Date();
+    var datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/"
+                    + currentdate.getFullYear() + " "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+
+    if(isDataValid == false){
+      return;
+    } else {
+      db.push({
+        name: name,
+        phone:phone,
+        email:email,
+        password:password,
+        createdAt:datetime
+      });
+
+      window.open ('agents.html','_self',false)
+
+
+
+    }
+  }
+  </script>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
+    authDomain: "eedc-e65c8.firebaseapp.com",
+    databaseURL: "https://eedc-e65c8.firebaseio.com",
+    projectId: "eedc-e65c8",
+    storageBucket: "eedc-e65c8.appspot.com",
+    messagingSenderId: "393595658709",
+    appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
+    measurementId: "G-RT3T2CXV9K"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database().ref().child("agents");
+</script>
+
+
+
+</body>
+
+</html>

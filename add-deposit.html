@@ -57,16 +57,27 @@
           </div>
           <form class="user">
             <div class="form-group">
-              <input type="date" class="form-control form-control-user" id="date" placeholder="Date">
+              <input type="date" class="form-control " id="date" placeholder="Date">
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control " onchange="calculateTotal()" id="cost" placeholder="Cost or Amount">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="amount" placeholder="Amount">
+              <input type="text" class="form-control " onchange="calculateTotal()" id="profit" placeholder="Profit">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="profit" placeholder="Profit">
+              <input type="text" class="form-control " id="totalAmount" disabled placeholder="Total Amount">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="paymentMethod" placeholder="Payment Menthod">
+               <select class="form-control" id="transactionType">
+                  <option value="" disabled selected>Transaction Type</option>
+                  <option value="Credit">Credit</option>
+                  <option value="Debit">Debit</option>
+               </select>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control " id="paymentMethod" placeholder="Payment Menthod">
             </div>
 
             </div>
@@ -99,7 +110,23 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
+  <script>
+  function calculateTotal() {
+    var cost = document.getElementById("cost").value;
+    if(cost == null || cost == ""){
+      cost = 0;
+    }
 
+    var profit = document.getElementById("profit").value;
+    if(profit == null || profit == ""){
+      profit = 0;
+    }
+
+    var total = +cost + +profit;
+    document.getElementById("totalAmount").value = total;
+    // document.getElementById("demo").innerHTML = "You selected: " + x;
+  }
+  </script>
 
   <script>
   var imageUrl = "";
@@ -110,25 +137,32 @@ var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
     var isDataValid = true;
 
     var date = document.getElementById("date").value;
-    var amount = document.getElementById("amount").value;
+    var amount = document.getElementById("totalAmount").value;
     var profit = document.getElementById("profit").value;
+    var cost = document.getElementById("cost").value;
     var paymentMethod = document.getElementById("paymentMethod").value;
-
+    var transactionTypeSelected = document.getElementById('transactionType');
+    var transactionTypeValue = transactionTypeSelected.options[transactionTypeSelected.selectedIndex].value;
 
 
 
     if (date == "") {
       alert("Date must be filled out");
       isDataValid = false;
-    } else if (amount == "") {
-      alert("Please enter amount");
-      isDataValid = false;
-    } else if (profit == "") {
+    }  if (profit == "") {
       alert("Please enter profit");
       isDataValid = false;
-    }  else if (paymentMethod == "") {
+    }else if (cost == "") {
+      alert("Please enter cost");
+      isDataValid = false;
+    }
+      else if (paymentMethod == "") {
       alert("Please enter payment method");
       isDataValid = false;
+    }else if (transactionTypeValue == "") {
+      alert("Please transaction type");
+      isDataValid = false;
+      return;
     }
 
     console.log(isDataValid);
@@ -143,8 +177,10 @@ var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
 
       depositDb.push({
        date: date,
-       amount: amount,
+       totalAmount: amount,
        profit: profit,
+       cost: cost,
+       transactionType: transactionTypeValue,
        paymentMethod: paymentMethod
       });
 

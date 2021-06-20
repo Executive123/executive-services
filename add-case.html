@@ -63,6 +63,18 @@
                         </select>
                      </div>
                      <div class="form-group">
+                        <input type="number" class="form-control" id="cost" placeholder="Cost" onchange="calculateTotal()">
+                     </div>
+
+                     <div class="form-group">
+                        <input type="number" class="form-control" id="profit" placeholder="Profit" onchange="calculateTotal()">
+                     </div>
+
+                     <div class="form-group">
+                        <input type="number" class="form-control" id="totalAmount" disabled placeholder="Total Amount">
+                     </div>
+
+                     <div class="form-group">
                         <select class="form-control" id="status">
                            <option value="" disabled selected>Set Status</option>
                            <option value="Open">Open</option>
@@ -85,6 +97,25 @@
          </div>
       </div>
       </div>
+
+
+<script>
+function calculateTotal() {
+  var cost = document.getElementById("cost").value;
+  if(cost == null || cost == ""){
+    cost = 0;
+  }
+
+  var profit = document.getElementById("profit").value;
+  if(profit == null || profit == ""){
+    profit = 0;
+  }
+
+  var total = +cost + +profit;
+  document.getElementById("totalAmount").value = total;
+  // document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+</script>
       <!-- Bootstrap core JavaScript-->
       <script src="vendor/jquery/jquery.min.js"></script>
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -117,6 +148,9 @@
            var statusSelected = document.getElementById('status');
            var statusValue = statusSelected.options[statusSelected.selectedIndex].value;
 
+           var cost = document.getElementById("cost").value;
+           var profit = document.getElementById("profit").value;
+           var totalAmount = document.getElementById("totalAmount").value;
 
            if(customerSelectedIndex  == ""){
              alert("Please select customer");
@@ -186,13 +220,31 @@
                              if(isDataValid == false){
                                return;
                              } else {
+
+
+                                                              const transactionDb = firebase.database().ref().child("deposits");
+                                                              const depositDb = transactionDb.child(usersArray[customerSelectedIndex].phone);
+
+                                                              var transaction = depositDb.push({
+                                                               date: date,
+                                                               totalAmount: totalAmount,
+                                                               profit: profit,
+                                                               cost: cost,
+                                                               transactionType: "Debit"
+                                                              });
+
+
                                db.push({
                                  customer: usersArray[customerSelectedIndex],
                                  date:date,
                                  emailNote:emailNote,
                                  agent: agentsArray[agentSelectedIndex],
                                  status: statusValue,
-                                 fileUrl: url
+                                 fileUrl: url,
+                                 cost: cost,
+                                 profit: profit,
+                                 totalAmount: totalAmount,
+                                 transactionKey: transaction.key
                                });
 
                                window.open ('cases.html','_self',false)
@@ -214,12 +266,32 @@
                    if(isDataValid == false){
                      return;
                    } else {
+
+
+                                                                                   const transactionDb = firebase.database().ref().child("deposits");
+                                                                                   const depositDb = transactionDb.child(usersArray[customerSelectedIndex].phone);
+
+                                                                                   var transaction = depositDb.push({
+                                                                                    date: date,
+                                                                                    totalAmount: totalAmount,
+                                                                                    profit: profit,
+                                                                                    cost: cost,
+                                                                                    transactionType: "Debit"
+                                                                                   });
+
+
+
                      db.push({
                        customer: usersArray[customerSelectedIndex],
                        date:date,
                        emailNote:emailNote,
                        agent: agentsArray[agentSelectedIndex],
-                       status: statusValue
+                       status: statusValue,
+                       cost: cost,
+                       profit: profit,
+                       totalAmount: totalAmount,
+                       transactionKey: transaction.key
+
                      });
 
                      window.open ('cases.html','_self',false)

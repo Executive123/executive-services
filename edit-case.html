@@ -67,6 +67,19 @@
             <div class="form-group">
               <textarea class="form-control" id="emailNote" name="emailNote" rows="6" cols="50"  placeholder="Email Note"></textarea>
             </div>
+
+            <div class="form-group">
+               <input type="number" class="form-control" id="cost" placeholder="Cost" onchange="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+               <input type="number" class="form-control" id="profit" placeholder="Profit" onchange="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+               <input type="number" class="form-control" id="totalAmount" disabled placeholder="Total Amount">
+            </div>
+
             <div class="form-group">
               <select class="form-control" id="agent">
                <option value="" disabled selected>Assign Agent</option>
@@ -110,7 +123,23 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
+  <script>
+  function calculateTotal() {
+    var cost = document.getElementById("cost").value;
+    if(cost == null || cost == ""){
+      cost = 0;
+    }
 
+    var profit = document.getElementById("profit").value;
+    if(profit == null || profit == ""){
+      profit = 0;
+    }
+
+    var total = +cost + +profit;
+    document.getElementById("totalAmount").value = total;
+    // document.getElementById("demo").innerHTML = "You selected: " + x;
+  }
+  </script>
 
   <script>
   var imageUrl = "";
@@ -130,6 +159,11 @@
 
     var statusSelected = document.getElementById('status');
     var statusValue = statusSelected.options[statusSelected.selectedIndex].value;
+
+
+    var cost = document.getElementById("cost").value;
+    var profit = document.getElementById("profit").value;
+    var totalAmount = document.getElementById("totalAmount").value;
 
 
     if(customerSelectedIndex  == ""){
@@ -155,15 +189,29 @@
     if(isDataValid == false){
       return;
     } else {
-      db.child(selectedCaseKey).set({
-        customer: usersArray[customerSelectedIndex],
-        date:date,
-        emailNote:emailNote,
-        agent: agentsArray[agentSelectedIndex],
-        status: statusValue
+
+      const depositDb = firebase.database().ref().child("deposits");
+      const depositDbChild = depositDb.child(usersArray[customerSelectedIndex].phone);
+          depositDbChild.child(transactionKey).set({
+       date: date,
+       totalAmount: totalAmount,
+       profit: profit,
+       cost: cost,
+       transactionType: "Debit"
       });
 
-      window.open ('cases.html','_self',false)
+        db.child(selectedCaseKey).set({
+          customer: usersArray[customerSelectedIndex],
+          date:date,
+          emailNote:emailNote,
+          agent: agentsArray[agentSelectedIndex],
+          status: statusValue,
+          cost: cost,
+          profit: profit,
+          totalAmount: totalAmount
+        });
+
+        window.open ('cases.html','_self',false)
 
 
 
@@ -243,12 +291,16 @@
 
       });
 
-
+      var transactionKey =selectedCase.transactionKey;
       document.getElementById("date").value = selectedCase.date;
       document.getElementById("emailNote").value = selectedCase.emailNote;
       document.getElementById('customer').value=selectedCase.customer.name;
       document.getElementById('agent').value=selectedCase.agent.name;
       document.getElementById('status').value=selectedCase.status;
+      document.getElementById('cost').value=selectedCase.cost;
+      document.getElementById('profit').value=selectedCase.profit;
+      document.getElementById('totalAmount').value=selectedCase.totalAmount;
+
 
 
 </script>

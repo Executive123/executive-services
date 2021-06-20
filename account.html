@@ -298,7 +298,11 @@
           <h1 class="h3 mb-2 text-gray-800">Account</h1>
 
           <a style="margin-bottom: 25px;"  href="#" onclick="addDeposit()" id="addDepositButton"class="btn btn-primary">
-            Add Deposit
+            Add Transaction
+          </a>
+
+          <a style="margin-bottom: 25px;"  href="#" id="netBalance"class="btn btn-success">
+            Net Balance:
           </a>
 
           <!-- DataTales Example -->
@@ -312,16 +316,20 @@
                   <thead>
                     <tr>
                       <th>Date</th>
-                      <th>Amount</th>
+                      <th>Cost</th>
                       <th>Profit</th>
+                      <th>Total Amount</th>
+                      <th>Transaction Type</th>
                       <th>Payment Method</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>Date</th>
-                      <th>Amount</th>
+                      <th>Cost</th>
                       <th>Profit</th>
+                      <th>Total Amount</th>
+                      <th>Transaction Type</th>
                       <th>Payment Method</th>
                     </tr>
                   </tfoot>
@@ -438,7 +446,7 @@ firebase.initializeApp(firebaseConfig);
 var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
 
 const db = firebase.database().ref().child("deposits").child(selected.phone);
-
+var total = 0;
 db.once("value", function(snapshot) {
   snapshot.forEach(function(child) {
     var table = document.getElementById("userTable");
@@ -447,18 +455,28 @@ db.once("value", function(snapshot) {
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
       var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
 
 
       cell1.innerHTML =child.val().date;
-      cell2.innerHTML =child.val().amount;
+      cell2.innerHTML = child.val().cost;
       cell3.innerHTML = child.val().profit;
-      cell4.innerHTML = child.val().paymentMethod;
+      cell4.innerHTML =child.val().totalAmount;
+      cell5.innerHTML = child.val().paymentMethod;
+      cell6.innerHTML = child.val().transactionType;
+
+      if(child.val().transactionType == "Credit"){
+        total = +total + +child.val().totalAmount;
+      } else {
+        total = +total - +child.val().totalAmount;
+      }
 
   });
 
+  document.getElementById("netBalance").innerHTML = "Net Balance: "+total;
 
   var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
-
 
 });
 </script>

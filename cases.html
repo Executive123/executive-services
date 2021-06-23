@@ -59,6 +59,12 @@
          </a>
          <!-- Divider -->
          <hr class="sidebar-divider">
+         <li class="nav-item">
+            <a class="nav-link" href="index.html">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Blackboard</span></a>
+         </li>
+         <hr class="sidebar-divider">
          <!-- Heading -->
          <div class="sidebar-heading">
             Users
@@ -435,7 +441,7 @@
                   filterAgentr=agentsArray[agentSelectedIndex].name;
                 }
 
-
+                // alert(filterAgentr);
 
 
                 const db = firebase.database().ref().child("cases");

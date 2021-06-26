@@ -60,13 +60,14 @@
          <!-- Divider -->
          <hr class="sidebar-divider">
          <li class="nav-item">
-           <a class="nav-link" href="transactions.html">
+            <a class="nav-link" href="index.html">
             <i class="fas fa-clipboard-list"></i>
             <span>Blackboard</span></a>
          </li>
          <hr class="sidebar-divider">
-         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+
+         <li class="nav-item active">
+           <a class="nav-link" href="transactions.html">
             <i class="fas fa-clipboard-list"></i>
             <span>Transactions</span></a>
          </li>
@@ -97,7 +98,7 @@
             <i class="fas fa-briefcase-medical"></i>
             <span>Add Service</span></a>
          </li>
-         <li class="nav-item active">
+         <li class="nav-item">
             <a class="nav-link" href="cases.html">
             <i class="fas fa-briefcase"></i>
             <span>View Services</span></a>
@@ -279,7 +280,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                <!-- Page Heading -->
-               <h1 class="h3 mb-2 text-gray-800">Services</h1>
+               <h1 class="h3 mb-2 text-gray-800">Summary</h1>
                <div id="userInfo" class="alert alert-success" style="display: none">
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                   <strong>Number: </strong>
@@ -296,30 +297,10 @@
                <div id="filterForm" style="display: none">
                   <form>
                   <div class="form-group">
-                     <select class="form-control" id="customer">
-                        <option value="" disabled selected>Select Customer</option>
-                     </select>
-                  </div>
-                  <div class="form-group">
                      <input placeholder="Start Date"class="form-control" type="text" onfocus="(this.type='date')" id="startDate">
                   </div>
                   <div class="form-group">
                      <input placeholder="End Date"class="form-control" type="text" onfocus="(this.type='date')" id="endDate">
-                  </div>
-                  <div class="form-group">
-                     <textarea class="form-control" id="emailNote" name="emailNote" rows="6" cols="50"  placeholder="Email Note"></textarea>
-                  </div>
-                  <div class="form-group">
-                     <select class="form-control" id="agent">
-                        <option value="" disabled selected>Assign Agent</option>
-                     </select>
-                  </div>
-                  <div class="form-group">
-                     <select class="form-control" id="status">
-                        <option value="" disabled selected>Set Status</option>
-                        <option value="Open">Open</option>
-                        <option value="Close">Close</option>
-                     </select>
                   </div>
                </div>
                <br>
@@ -337,32 +318,20 @@
                            <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
                               <thead>
                                  <tr>
-                                    <th>Customer</th>
-                                    <th>Date</th>
-                                    <th>Notes</th>
-                                    <th>Cost</th>
-                                    <th>Profit</th>
-                                    <th>Total</th>
-                                    <th>Agent</th>
-                                    <th>Status</th>
-                                    <th>Close Date</th>
-                                    <th>Atatchment</th>
-                                    <th>Edit</th>
+                                    <th>Total Transactions</th>
+                                    <th>Total Amount Credit</th>
+                                    <th>Total Amount Debit</th>
+                                    <th>Total Cost</th>
+                                    <th>Total Profit</th>
                                  </tr>
                               </thead>
                               <tfoot>
                                  <tr>
-                                    <th>Customer</th>
-                                    <th>Date</th>
-                                    <th>Notes</th>
-                                    <th>Cost</th>
-                                    <th>Profit</th>
-                                    <th>Total</th>
-                                    <th>Agent</th>
-                                    <th>Status</th>
-                                    <th>Close Date</th>
-                                    <th>Atatchment</th>
-                                    <th>Edit</th>
+                                    <th>Total Transactions</th>
+                                    <th>Total Amount Credit</th>
+                                    <th>Total Amount Debit</th>
+                                    <th>Total Cost</th>
+                                    <th>Total Profit</th>
                                  </tr>
                               </tfoot>
                               <tbody>
@@ -415,133 +384,90 @@
       <script>
          var isFilterShown = false;
          function showFilter() {
+
            if(isFilterShown){
-             var customerSelected = document.getElementById('customer');
-               var customerSelectedIndex = customerSelected.options[customerSelected.selectedIndex].value;
 
                var startDate = document.getElementById("startDate").value;
                var endDate = document.getElementById("endDate").value;
 
-               var emailNote = document.getElementById("emailNote").value;
-
-               var agentSelected = document.getElementById('agent');
-               var agentSelectedIndex = agentSelected.options[agentSelected.selectedIndex].value;
-
-               var statusSelected = document.getElementById('status');
-               var statusValue = statusSelected.options[statusSelected.selectedIndex].value;
-
+               if(startDate == ""){
+                 alert("please enter start date");
+                 return
+               }
+               if(endDate == ""){
+                 alert("please enter end date");
+                 return
+               }
                var table = document.getElementById("userTable");
+
                while (table.rows.length > 1) {
-  table.deleteRow(1);
-}
+               table.deleteRow(1);
+               }
 
 
 
-                var filterCustomer= "";
-                if(customerSelectedIndex  != ""){
-                  filterCustomer=usersArray[customerSelectedIndex].name;
-                }
-
-                var filterAgentr= "";
-                if(agentSelectedIndex  != ""){
-                  filterAgentr=agentsArray[agentSelectedIndex].name;
-                }
-
-                // alert(filterAgentr);
-
-
-                const db = firebase.database().ref().child("cases");
-
-                db.once("value", function(snapshot) {
-                  snapshot.forEach(function(child) {
-                    if(loggedInStatus == 0 || loggedInUser.email == child.val().agent.email){
-
-                      var add = false;
-                      if(filterCustomer != null && filterCustomer!= "" && child.val().customer.name.toLowerCase().includes(filterCustomer.toLowerCase())){
-                        add = true;
-                      }
-
-                      if(emailNote != null && emailNote!= "" && child.val().emailNote.toLowerCase().includes(emailNote.toLowerCase())){
-                        add = true;
-                      }
-
-                      if(filterAgentr != null && filterAgentr!= "" && child.val().agent.name.toLowerCase().includes(filterAgentr.toLowerCase())){
-                        add = true;
-                      }
-
-                      if(statusValue != null && statusValue!= "" && child.val().status.toLowerCase().includes(statusValue.toLowerCase())){
-                        add = true;
-                      }
-
-                      if(add){
-                        var table = document.getElementById("userTable");
-                          var row = table.insertRow(1);
-                          var cell1 = row.insertCell(0);
-                          var cell2 = row.insertCell(1);
-                          var cell3 = row.insertCell(2);
-                          var cell4 = row.insertCell(3);
-                          var cell5 = row.insertCell(4);
-                          var cell6 = row.insertCell(5);
-                          var cell7 = row.insertCell(6);
-                          var cell8 = row.insertCell(7);
-                          var cell9 = row.insertCell(8);
-                          var cell10 = row.insertCell(9);
-                          var cell11 = row.insertCell(10);
-
-                          cell1.innerHTML = "<a id='viewCustomer' href='#'>"+child.val().customer.name+"</a>";
-
-                          document.getElementById ("viewCustomer").addEventListener ("click", function() {
-                            document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
-                            document.getElementById("customerState").innerHTML = child.val().customer.state;
-                            document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
-                            document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
-                            document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
-                            document.getElementById("userInfo").style.display = "block";
-
-                          }, false);
-                          cell2.innerHTML =child.val().date;
-                          cell3.innerHTML = child.val().emailNote;
-                          cell4.innerHTML = child.val().cost;
-                          cell5.innerHTML = child.val().profit;
-                          cell6.innerHTML = child.val().totalAmount;
-                          cell7.innerHTML = child.val().agent.name;
-                          cell8.innerHTML = child.val().status;
-                          cell9.innerHTML = child.val().closeDate;
-                          cell10.innerHTML = child.val().fileUrl;
-                          if(child.val().fileUrl == null){
-                            cell10.innerHTML = "No Attachment";
-                          } else {
-                            cell10.innerHTML = "<a id='viewAttachment' target='_blank' href='"+child.val().fileUrl+"'>View Attachment</a>"
-                          }
-
-                          cell11.innerHTML = "<a id='removeCase' href='#'>Edit Data</a>";
-                          document.getElementById ("removeCase").addEventListener ("click", function() {
-                            localStorage.setItem("selectedCase",JSON.stringify(child.val()));
-                            localStorage.setItem("selectedCaseKey",JSON.stringify(child.key));
-
-                            window.open ('edit-case.html','_self',false)
-                          }, false);
-
-                      }
-
-
-
-                    }
+                            var table = document.getElementById("userTable");
+                              var row = table.insertRow(1);
+                              var cell1 = row.insertCell(0);
+                              var cell2 = row.insertCell(1);
+                              var cell3 = row.insertCell(2);
+                              var cell4 = row.insertCell(3);
+                              var cell5 = row.insertCell(4);
 
 
 
 
 
+                        var transactionCount = 0;
+                        var totalCredit = 0;
+                        var totalDebit = 0;
+                        var totalCost = 0;
+                        var totalProfit = 0;
+                        const db = firebase.database().ref().child("deposits");
 
-                  });
+                        startDate = Date.parse(startDate);
+                        endDate = Date.parse(endDate);
+                        db.once("value", function(snapshot) {
+                          snapshot.forEach(function(child) {
+                             console.log(child.key);
+
+                             const tempDb = firebase.database().ref().child("deposits").child(child.key);
 
 
-                  var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                             tempDb.once("value", function(snapshot) {
+                               snapshot.forEach(function(subChild) {
+                                 var transactionDate = Date.parse(subChild.val().date);
+
+                                 // alert(transactionDate);
+                                 if( transactionDate > startDate && transactionDate <= endDate){
+                                   transactionCount = transactionCount + 1;
+                                  cell1.innerHTML =transactionCount;
+
+                                 if(subChild.val().transactionType == "Credit"){
+                                  totalCredit = +totalCredit + +subChild.val().cost + +subChild.val().profit;
+                                  cell2.innerHTML =totalCredit;
+                                }
+
+                                if(subChild.val().transactionType == "Debit"){
+                                 totalDebit = +totalDebit + +subChild.val().cost + +subChild.val().profit;
+                                 cell3.innerHTML =totalDebit;
+                               }
+
+                               totalCost = +totalCost + +subChild.val().cost;
+                               cell4.innerHTML =totalCost;
+
+                               totalProfit = +totalProfit + +subChild.val().profit;
+                               cell5.innerHTML =totalProfit;
+               }
+
+                               });
+                             });
+
+                          });
 
 
 
-
-                });
+                        });
 
 
 
@@ -551,6 +477,7 @@
 
 
            } else {
+
              isFilterShown = true;
              document.getElementById("filterButton").innerHTML= "Apply Filter";
              document.getElementById("filterForm").style.display = 'block';
@@ -576,122 +503,6 @@
 
             var statusSelected = document.getElementById('status');
             var statusValue = statusSelected.options[statusSelected.selectedIndex].value;
-
-
-            // if(customerSelectedIndex  == ""){
-            //   alert("Please select customer");
-            //   isDataValid = false;
-            //   return;
-            // } else if (date == "") {
-            //   alert("Date must be filled out");
-            //   isDataValid = false;
-            //   return;
-            // } else if (emailNote == "") {
-            //   alert("Please enter email note");
-            //   isDataValid = false;
-            //   return;
-            // } else if (agentSelected == "") {
-            //   alert("Please select agent");
-            //   isDataValid = false;
-            //   return;
-            // }  else if (statusValue == "") {
-            //   alert("Please select status");
-            //   isDataValid = false;
-            //   return;
-            // }
-            //
-            // var currentdate = new Date();
-            // var datetime = currentdate.getDate() + ""
-            //             + (currentdate.getMonth()+1)  + ""
-            //             + currentdate.getFullYear() + ""
-            //             + currentdate.getHours() + ""
-            //             + currentdate.getMinutes() + ""
-            //             + currentdate.getSeconds();
-            //
-            // if (files.length != 0) {
-            //
-            //       //Loops through all the selected files
-            //       for (let i = 0; i < files.length; i++) {
-            //
-            //         var fileName = datetime+files[i].name;
-            //         tempName = fileName;
-            //         //create a storage reference
-            //         var storage = firebase.storage().ref(fileName);
-            //
-            //         //upload file
-            //         var upload = storage.put(files[i]);
-            //
-            //         //update progress bar
-            //         upload.on(
-            //           "state_changed",
-            //           function progress(snapshot) {
-            //             // var percentage =
-            //             //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //             document.getElementById("uploading").value = "Please wait...";
-            //           },
-            //
-            //           function error() {
-            //           },
-            //
-            //           function complete() {
-            //             var storage1 = firebase.storage().ref(fileName);
-            //
-            //                   storage
-            //                   .getDownloadURL()
-            //                   .then(function(url) {
-            //                   console.log(url);
-            //                   console.log(isDataValid);
-            //                   // alert(value);
-            //
-            //                   if(isDataValid == false){
-            //                     return;
-            //                   } else {
-            //                     db.push({
-            //                       customer: usersArray[customerSelectedIndex],
-            //                       date:date,
-            //                       emailNote:emailNote,
-            //                       agent: agentsArray[agentSelectedIndex],
-            //                       status: statusValue,
-            //                       fileUrl: url
-            //                     });
-            //
-            //                     window.open ('cases.html','_self',false)
-            //
-            //
-            //
-            //                   }
-            //                   })
-            //                   .catch(function(error) {
-            //                   console.log("error encountered");
-            //                   });
-            //           }
-            //         );
-            //       }
-            //       } else {
-            //         console.log(isDataValid);
-            //         // alert(value);
-            //
-            //         if(isDataValid == false){
-            //           return;
-            //         } else {
-            //           db.push({
-            //             customer: usersArray[customerSelectedIndex],
-            //             date:date,
-            //             emailNote:emailNote,
-            //             agent: agentsArray[agentSelectedIndex],
-            //             status: statusValue
-            //           });
-            //
-            //           window.open ('cases.html','_self',false)
-            //
-            //
-            //
-            //         }
-            //       }
-
-
-
-
            }
       </script>
       <!-- Bootstrap core JavaScript-->
@@ -729,128 +540,67 @@
            storageBucket: "eedc-e65c8.appspot.com",
            messagingSenderId: "393595658709",
            appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
-           measurementId: "G-RT3T2CXV9K"
+           measurementId: "G-RT3T2C XV9K"
          };
          // Initialize Firebase
          firebase.initializeApp(firebaseConfig);
 
-         const userDb = firebase.database().ref().child("users");
-         var select = document.getElementById('customer');
-
-         var usersArray = [];
-         var pos = 0;
-           userDb.once("value", function(snapshot) {
-             snapshot.forEach(function(child) {
-               var opt = document.createElement('option');
-               opt.value = pos;
-               opt.innerHTML = child.val().name;
-               select.appendChild(opt);
-               usersArray.push(child.val());
-               // alert(usersArray[pos].name);
-               pos++;
-             });
-
-           });
 
 
-           const agentDb = firebase.database().ref().child("agents");
-           var selectAgent = document.getElementById('agent');
-
-           var agentsArray = [];
-           var posAgent = 0;
-             agentDb.once("value", function(snapshot) {
-               snapshot.forEach(function(child) {
-                 var opt = document.createElement('option');
-                 opt.value = posAgent;
-                 opt.innerHTML = child.val().name;
-
-                 selectAgent.appendChild(opt);
-
-                 var obj = child.val();
-                 obj.key = child.key;
-                 agentsArray.push(obj);
-                 posAgent++;
-               });
-
-             });
+             var table = document.getElementById("userTable");
+               var row = table.insertRow(1);
+               var cell1 = row.insertCell(0);
+               var cell2 = row.insertCell(1);
+               var cell3 = row.insertCell(2);
+               var cell4 = row.insertCell(3);
+               var cell5 = row.insertCell(4);
 
 
 
 
 
-
-
-
-
-
-         const db = firebase.database().ref().child("cases");
+         var transactionCount = 0;
+         var totalCredit = 0;
+         var totalDebit = 0;
+         var totalCost = 0;
+         var totalProfit = 0;
+         const db = firebase.database().ref().child("deposits");
 
          db.once("value", function(snapshot) {
            snapshot.forEach(function(child) {
-             if(loggedInStatus == 0 || loggedInUser.email == child.val().agent.email){
-               var table = document.getElementById("userTable");
-                 var row = table.insertRow(1);
-                 var cell1 = row.insertCell(0);
-                 var cell2 = row.insertCell(1);
-                 var cell3 = row.insertCell(2);
-                 var cell4 = row.insertCell(3);
-                 var cell5 = row.insertCell(4);
-                 var cell6 = row.insertCell(5);
-                 var cell7 = row.insertCell(6);
-                 var cell8 = row.insertCell(7);
-                 var cell9 = row.insertCell(8);
-                 var cell10 = row.insertCell(9);
-                 var cell11 = row.insertCell(10);
-                 cell1.innerHTML = "<a id='viewCustomer' href='#'>"+child.val().customer.name+"</a>";
+              console.log(child.key);
 
-                 document.getElementById ("viewCustomer").addEventListener ("click", function() {
-                   document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
-                   document.getElementById("customerState").innerHTML = child.val().customer.state;
-                   document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
-                   document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
-                   document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
-                   document.getElementById("userInfo").style.display = "block";
+              const tempDb = firebase.database().ref().child("deposits").child(child.key);
 
-                 }, false);
-                 cell2.innerHTML =child.val().date;
-                 cell3.innerHTML = child.val().emailNote;
-                 cell4.innerHTML = child.val().cost;
-                 cell5.innerHTML = child.val().profit;
-                 cell6.innerHTML = child.val().totalAmount;
-                 cell7.innerHTML = child.val().agent.name;
-                 cell8.innerHTML = child.val().status;
-                 cell9.innerHTML = child.val().closeDate;
-                 cell10.innerHTML = child.val().fileUrl;
-                 if(child.val().fileUrl == null){
-                   cell10.innerHTML = "No Attachment";
-                 } else {
-                   cell10.innerHTML = "<a id='viewAttachment' target='_blank' href='"+child.val().fileUrl+"'>View Attachment</a>"
+              tempDb.once("value", function(snapshot) {
+                snapshot.forEach(function(subChild) {
+                   transactionCount = transactionCount + 1;
+                   cell1.innerHTML =transactionCount;
+
+                  if(subChild.val().transactionType == "Credit"){
+                   totalCredit = +totalCredit + +subChild.val().cost + +subChild.val().profit;
+                   cell2.innerHTML =totalCredit;
                  }
 
-                 cell11.innerHTML = "<a id='removeCase' href='#'>Edit Data</a>";
-                 document.getElementById ("removeCase").addEventListener ("click", function() {
-                   localStorage.setItem("selectedCase",JSON.stringify(child.val()));
-                   localStorage.setItem("selectedCaseKey",JSON.stringify(child.key));
+                 if(subChild.val().transactionType == "Debit"){
+                  totalDebit = +totalDebit + +subChild.val().cost + +subChild.val().profit;
+                  cell3.innerHTML =totalDebit;
+                }
 
-                   window.open ('edit-case.html','_self',false)
-                 }, false);
+                totalCost = +totalCost + +subChild.val().cost;
+                cell4.innerHTML =totalCost;
 
-
-
-             }
-
+                totalProfit = +totalProfit + +subChild.val().profit;
+                cell5.innerHTML =totalProfit;
 
 
-
-
+                });
+              });
 
            });
 
 
-           var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
-
-
-
+           // var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 
          });
       </script>

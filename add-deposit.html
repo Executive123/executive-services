@@ -184,6 +184,8 @@ var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
        paymentMethod: paymentMethod
       });
 
+
+
       window.open ('account.html','_self',false)
 
 
@@ -222,6 +224,7 @@ var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database().ref().child("deposits");
+
   </script>
 
 

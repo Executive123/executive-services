@@ -227,6 +227,7 @@
     } else {
 
       const depositDb = firebase.database().ref().child("deposits");
+
       const depositDbChild = depositDb.child(selectedCustomer.phone);
           depositDbChild.child(transactionKey).set({
        date: date,
@@ -235,6 +236,8 @@
        cost: cost,
        transactionType: "Debit"
       });
+
+
 
         db.child(selectedCaseKey).set({
           customer: selectedCustomer,

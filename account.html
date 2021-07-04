@@ -34,6 +34,8 @@
 
   </script>
 
+
+
 </head>
 
 <body id="page-top">
@@ -314,6 +316,28 @@
           <a style="margin-bottom: 25px;"  href="#" id="netBalance"class="btn btn-success">
             Net Balance:
           </a>
+          <a style="margin-bottom: 25px;"  href="#" id="netCost"class="btn btn-danger">
+            Total Expense:
+          </a>
+          <a style="margin-bottom: 25px;"  href="#" id="netProfit"class="btn btn-warning">
+            Total Profit:
+          </a>
+          <br>
+          <div id="filterForm">
+             <form>
+             <div class="form-group">
+                <input placeholder="Start Date"class="form-control" type="text" onfocus="(this.type='date')" id="startDate">
+             </div>
+             <div class="form-group">
+                <input placeholder="End Date"class="form-control" type="text" onfocus="(this.type='date')" id="endDate">
+             </div>
+          </div>
+          <br>
+          <a  href="#" onclick="setFilter()" id="filterButton"class="btn btn-primary">
+          Add Filter
+          </a>
+
+          <br><br>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -457,6 +481,8 @@ var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
 
 const db = firebase.database().ref().child("deposits").child(selected.phone);
 var total = 0;
+var cost = 0;
+var profit = 0;
 db.once("value", function(snapshot) {
   snapshot.forEach(function(child) {
     var table = document.getElementById("userTable");
@@ -482,11 +508,15 @@ db.once("value", function(snapshot) {
         total = +total - +child.val().totalAmount;
       }
 
+      profit = +profit + +child.val().profit;
+      cost = +cost + +child.val().cost;
+
   });
 
   document.getElementById("netBalance").innerHTML = "Net Balance: "+total;
+  document.getElementById("netCost").innerHTML = "Net Cost: "+cost;
+  document.getElementById("netProfit").innerHTML = "Net Profit: "+profit;
 
-  var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 
 });
 </script>
@@ -497,6 +527,80 @@ function logoutCall() {
   window.open ('login.html','_self',false)
 }
 </script>
+
+
+<script>
+   function setFilter() {
+
+
+         var startDate = document.getElementById("startDate").value;
+         var endDate = document.getElementById("endDate").value;
+
+         if(startDate == ""){
+           alert("please enter start date");
+          return
+         }
+         if(endDate == ""){
+           alert("please enter end date");
+           return
+         }
+
+         startDate = Date.parse(startDate);
+         endDate = Date.parse(endDate);
+         var table = document.getElementById("userTable");
+
+         while (table.rows.length > 1) {
+         table.deleteRow(1);
+         }
+
+         var total = 0;
+         var cost = 0;
+         var profit = 0;
+         db.once("value", function(snapshot) {
+           snapshot.forEach(function(child) {
+             var transactionDate = Date.parse(child.val().date);
+
+             // alert(transactionDate);
+             if( transactionDate > startDate && transactionDate <= endDate){
+             var table = document.getElementById("userTable");
+               var row = table.insertRow(1);
+               var cell1 = row.insertCell(0);
+               var cell2 = row.insertCell(1);
+               var cell3 = row.insertCell(2);
+               var cell4 = row.insertCell(3);
+               var cell5 = row.insertCell(4);
+               var cell6 = row.insertCell(5);
+
+
+               cell1.innerHTML =child.val().date;
+               cell2.innerHTML = child.val().cost;
+               cell3.innerHTML = child.val().profit;
+               cell4.innerHTML =child.val().totalAmount;
+               cell5.innerHTML = child.val().paymentMethod;
+               cell6.innerHTML = child.val().transactionType;
+
+               if(child.val().transactionType == "Credit"){
+                 total = +total + +child.val().totalAmount;
+               } else {
+                 total = +total - +child.val().totalAmount;
+               }
+
+               profit = +profit + +child.val().profit;
+               cost = +cost + +child.val().cost;
+             }
+
+           });
+
+           document.getElementById("netBalance").innerHTML = "Net Balance: "+total;
+           document.getElementById("netCost").innerHTML = "Net Cost: "+cost;
+           document.getElementById("netProfit").innerHTML = "Net Profit: "+profit;
+
+
+         });
+ }
+
+</script>
+
 </body>
 
 </html>

@@ -639,6 +639,7 @@
          // Initialize Firebase
          firebase.initializeApp(firebaseConfig);
          const db = firebase.database().ref().child("cases");
+         document.getElementById('date').valueAsDate = new Date();
 
          const userDb = firebase.database().ref().child("users");
          var select = document.getElementById('customer');

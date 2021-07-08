@@ -353,6 +353,7 @@
                       <th>Cost</th>
                       <th>Profit</th>
                       <th>Total Amount</th>
+                      <th>Credit Amount</th>
                       <th>Transaction Type</th>
                       <th>Payment Method</th>
                     </tr>
@@ -363,6 +364,7 @@
                       <th>Cost</th>
                       <th>Profit</th>
                       <th>Total Amount</th>
+                      <th>Credit Amount</th>
                       <th>Transaction Type</th>
                       <th>Payment Method</th>
                     </tr>
@@ -493,17 +495,19 @@ db.once("value", function(snapshot) {
       var cell4 = row.insertCell(3);
       var cell5 = row.insertCell(4);
       var cell6 = row.insertCell(5);
+      var cell7 = row.insertCell(6);
 
 
       cell1.innerHTML =child.val().date;
       cell2.innerHTML = child.val().cost;
       cell3.innerHTML = child.val().profit;
       cell4.innerHTML =child.val().totalAmount;
-      cell5.innerHTML = child.val().paymentMethod;
-      cell6.innerHTML = child.val().transactionType;
+      cell5.innerHTML =child.val().creditAmount;
+      cell6.innerHTML = child.val().paymentMethod;
+      cell7.innerHTML = child.val().transactionType;
 
       if(child.val().transactionType == "Credit"){
-        total = +total + +child.val().totalAmount;
+        total = +total + +child.val().creditAmount;
       } else {
         total = +total - +child.val().totalAmount;
       }

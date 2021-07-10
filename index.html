@@ -291,10 +291,62 @@
                         <h6 class="m-0 font-weight-bold text-primary"></h6>
                      </div>
                      <div class="card-body">
-                       <textarea id="inputBoard"  placeholder="insert text here..." rows="25" style="width: 100%; background-color: black;color:#fff;"></textarea>
+                       <textarea id="inputBoard"  placeholder="insert text here..." rows="10" style="width: 100%; background-color: black;color:#fff;"></textarea>
                      </div>
                      <div style="margin: 0 auto;  width:50px;">
                      <a  href="#" onclick="saveText()" id="saveButton"class="btn btn-primary" >
+                     Save
+                   </a><br>
+                     </div><br><br>
+                  </div>
+               </div>
+               <!-- /.container-fluid -->
+            </div>
+
+            <div class="container-fluid">
+               <!-- Page Heading -->
+               <h1 class="h3 mb-2 text-gray-800">Blackboard 2</h1>
+
+               <h6 id="author2">Last edit by:</h6>
+               <h6 id="editDateTime2">Last edit time:</h6>
+               <div class="center">
+
+                  <!-- DataTales Example -->
+                  <div class="card shadow mb-4">
+                     <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary"></h6>
+                     </div>
+                     <div class="card-body">
+                       <textarea id="inputBoard2"  placeholder="insert text here..." rows="10" style="width: 100%; background-color: green;color:#fff;"></textarea>
+                     </div>
+                     <div style="margin: 0 auto;  width:50px;">
+                     <a  href="#" onclick="saveText2()" id="saveButton"class="btn btn-primary" >
+                     Save
+                   </a><br>
+                     </div><br><br>
+                  </div>
+               </div>
+               <!-- /.container-fluid -->
+            </div>
+
+            <div class="container-fluid">
+               <!-- Page Heading -->
+               <h1 class="h3 mb-2 text-gray-800">Blackboard 3</h1>
+
+               <h6 id="author3">Last edit by:</h6>
+               <h6 id="editDateTime3">Last edit time:</h6>
+               <div class="center">
+
+                  <!-- DataTales Example -->
+                  <div class="card shadow mb-4">
+                     <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary"></h6>
+                     </div>
+                     <div class="card-body">
+                       <textarea id="inputBoard3"  placeholder="insert text here..." rows="10" style="width: 100%; background-color: yellow;color:#fff;"></textarea>
+                     </div>
+                     <div style="margin: 0 auto;  width:50px;">
+                     <a  href="#" onclick="saveText3()" id="saveButton"class="btn btn-primary" >
                      Save
                    </a><br>
                      </div><br><br>
@@ -358,6 +410,43 @@
                         alert("Changes saved!");
 
       }
+      function saveText2() {
+        var currentdate = new Date();
+        var datetime = currentdate.getDate() + "/"
+                        + (currentdate.getMonth()+1)  + "/"
+                        + currentdate.getFullYear() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + currentdate.getSeconds();
+
+                        db.set({
+                          author: loggedInUser.name,
+                          date:datetime,
+                          content:document.getElementById("inputBoard2").value,
+                        });
+
+                        alert("Changes saved!");
+
+      }
+
+      function saveText3() {
+        var currentdate = new Date();
+        var datetime = currentdate.getDate() + "/"
+                        + (currentdate.getMonth()+1)  + "/"
+                        + currentdate.getFullYear() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + currentdate.getSeconds();
+
+                        db.set({
+                          author: loggedInUser.name,
+                          date:datetime,
+                          content:document.getElementById("inputBoard3").value,
+                        });
+
+                        alert("Changes saved!");
+
+      }
          function logoutCall() {
            window.localStorage.clear();
            window.open ('login.html','_self',false)
@@ -403,6 +492,8 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database().ref().child("Blackboard");
+        const db2 = firebase.database().ref().child("Blackboard2");
+        const db3 = firebase.database().ref().child("Blackboard3");
         db.once("value", function(snapshot) {
           snapshot.forEach(function(child) {
             if(child.key == "content"){
@@ -413,6 +504,36 @@
             }
             if(child.key == "date"){
               document.getElementById("editDateTime").innerHTML = "Last edit time: "+child.val();
+            }
+          });
+
+        });
+
+        db2.once("value", function(snapshot) {
+          snapshot.forEach(function(child) {
+            if(child.key == "content"){
+              document.getElementById("inputBoard2").value = child.val();
+            }
+            if(child.key == "author"){
+              document.getElementById("author2").innerHTML = "Last edit by: "+ child.val();
+            }
+            if(child.key == "date"){
+              document.getElementById("editDateTime2").innerHTML = "Last edit time: "+child.val();
+            }
+          });
+
+        });
+
+        db3.once("value", function(snapshot) {
+          snapshot.forEach(function(child) {
+            if(child.key == "content"){
+              document.getElementById("inputBoard3").value = child.val();
+            }
+            if(child.key == "author"){
+              document.getElementById("author3").innerHTML = "Last edit by: "+ child.val();
+            }
+            if(child.key == "date"){
+              document.getElementById("editDateTime3").innerHTML = "Last edit time: "+child.val();
             }
           });
 

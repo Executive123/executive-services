@@ -303,6 +303,8 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Customers</h1>
 
+
+<input type="text" id="myInput" onkeyup="filterData()" placeholder="Search for names.." title="Type in a name"
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -321,6 +323,7 @@
                       <th>Note 3</th>
                       <th>View Account</th>
                       <th>View Cases</th>
+                      <th>Edit User Info</th>
                       <th>Remove User</th>
                     </tr>
                   </thead>
@@ -334,6 +337,7 @@
                       <th>Note 3</th>
                       <th>View Account</th>
                       <th>View Cases</th>
+                      <th>Edit User Info</th>
                       <th>Remove User</th>
                     </tr>
                   </tfoot>
@@ -460,6 +464,7 @@ db.once("value", function(snapshot) {
       var cell7 = row.insertCell(6);
       var cell8 = row.insertCell(7);
       var cell9 = row.insertCell(8);
+      var cell10 = row.insertCell(9);
 
       cell1.innerHTML =child.val().name;
       cell2.innerHTML =child.val().phone;
@@ -482,7 +487,15 @@ db.once("value", function(snapshot) {
       }, false);
 
 
-      cell9.innerHTML = "<a id='removeUser' href='#'>Remove User</a>";
+      cell9.innerHTML = "<a id='editUser' href='#'>Edit User</a>";
+      document.getElementById ("editUser").addEventListener ("click", function() {
+        localStorage.setItem("editUser",JSON.stringify(child.val()));
+        localStorage.setItem("editUserKey",JSON.stringify(child.key));
+
+        window.open ('edit-user.html','_self',false)
+      }, false);
+
+      cell10.innerHTML = "<a id='removeUser' href='#'>Remove User</a>";
       document.getElementById ("removeUser").addEventListener ("click", function() {
         alert("User Removed");
         removeUser(child);
@@ -502,6 +515,28 @@ db.once("value", function(snapshot) {
 
 
 });
+</script>
+
+<script>
+function filterData() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("userTable");
+
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>
 
 <script>

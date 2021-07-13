@@ -309,6 +309,22 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Account</h1>
 
+
+          <div id="userInfo" class="alert alert-success">
+            <strong>Name: </strong>
+            <p id="customerName"></p>
+             <strong>Number: </strong>
+             <p id="customerNumber"></p>
+             <strong>State: </strong>
+             <p id="customerState"></p>
+             <strong>Note 1: </strong>
+             <p id="customerNote1"></p>
+             <strong>Note 2: </strong>
+             <p id="customerNote2"></p>
+             <strong>Note 3: </strong>
+             <p id="customerNote3"></p>
+          </div>
+
           <a style="margin-bottom: 25px;"  href="#" onclick="addDeposit()" id="addDepositButton"class="btn btn-primary">
             Add Transaction
           </a>
@@ -522,6 +538,14 @@ db.once("value", function(snapshot) {
   document.getElementById("netProfit").innerHTML = "Net Profit: "+profit;
 
 
+  document.getElementById("customerName").innerHTML = selected.name;
+  document.getElementById("customerNumber").innerHTML = selected.phone;
+  document.getElementById("customerState").innerHTML = selected.state;
+  document.getElementById("customerNote1").innerHTML = selected.note1;
+  document.getElementById("customerNote2").innerHTML = selected.note2;
+  document.getElementById("customerNote3").innerHTML = selected.note3;
+
+
 });
 </script>
 </script>
@@ -601,6 +625,9 @@ function logoutCall() {
 
 
          });
+
+
+
  }
 
 </script>

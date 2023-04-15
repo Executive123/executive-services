@@ -19,10 +19,11 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
   <script>
-    var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
+    var agentEmail = (window.localStorage.getItem('agentEmail'));
+    var agentPass = (window.localStorage.getItem('agentpass'));
     var loggedInStatus = (window.localStorage.getItem('agentStatus'));
 
-    if(loggedInUser == null){
+    if(agentEmail == null){
       alert("Please log in to continue");
       window.open ('login.html','_self',false)
     }
@@ -431,9 +432,10 @@
 
 <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 
 <script>
-document.getElementById("agentName").innerHTML = loggedInUser.name;
+document.getElementById("agentName").innerHTML = 'admin';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -450,9 +452,24 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database().ref().child("users");
+console.log(db);
+
+firebase.auth().signInWithEmailAndPassword(agentEmail, agentPass)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    console.log("User authenticated successfully.");
+    
+    // Access the Realtime Database
+   
+  })
+  .catch((error) => {
+    console.error("Error authenticating user: ", error);
+  });
 
 db.once("value", function(snapshot) {
   snapshot.forEach(function(child) {
+    console.log('1223123ü');
     var table = document.getElementById("userTable");
       var row = table.insertRow(1);
       var cell1 = row.insertCell(0);

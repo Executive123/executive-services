@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <h1>Login Page</h1>
+    <form id="login-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <p id="login-status"></p>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
+            authDomain: "eedc-e65c8.firebaseapp.com",
+            databaseURL: "https://eedc-e65c8.firebaseio.com",
+            projectId: "eedc-e65c8",
+            storageBucket: "eedc-e65c8.appspot.com",
+            messagingSenderId: "393595658709",
+            appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
+            measurementId: "G-RT3T2CXV9K"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get login form elements
+        const loginForm = document.querySelector('#login-form');
+        const emailInput = document.querySelector('#email');
+        const passwordInput = document.querySelector('#password');
+        const loginStatus = document.querySelector('#login-status');
+
+        // Login form submit event listener
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form submission
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // Sign in with email and password
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // User signed in
+                    loginStatus.textContent = 'Login successful!';
+                    window.location.href = 'home.html'; // Redirect to home page
+                })
+                .catch((error) => {
+                    // Handle errors
+                    var errorMessage = error.message;
+                    loginStatus.textContent = errorMessage;
+                });
+        });
+
+    </script>
+</body>
+
+</html>

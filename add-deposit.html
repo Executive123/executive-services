@@ -13,30 +13,33 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQxcHBZ1izt6OLyGRfhB5gP0dRc_xArhE&callback=initAutocomplete&libraries=places&v=weekly"
-    defer
-  ></script>
+    defer></script>
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <style>
-  .center {
-    margin: auto;
-    width: 10%;
-  }
+    .center {
+      margin: auto;
+      width: 10%;
+    }
   </style>
 
   <script>
-    var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
+    var agentEmail = (window.localStorage.getItem('agentEmail'));
+    var agentPass = (window.localStorage.getItem('agentpass'));
     var loggedInStatus = (window.localStorage.getItem('agentStatus'));
 
-    if(loggedInUser == null){
+    if (agentEmail == null) {
       alert("Please log in to continue");
-      window.open ('login.html','_self',false)
+      window.open('login.html', '_self', false)
     }
+
 
 
 
@@ -63,9 +66,9 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
       <li class="nav-item">
-         <a class="nav-link" href="index.html">
-         <i class="fas fa-clipboard-list"></i>
-         <span>Blackboard</span></a>
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-clipboard-list"></i>
+          <span>Blackboard</span></a>
       </li>
       <hr class="sidebar-divider">
       <!-- Heading -->
@@ -154,14 +157,17 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -174,13 +180,15 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1" hidden>
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -223,13 +231,15 @@
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1" hidden>
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
                 <span class="badge badge-danger badge-counter">7</span>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
@@ -239,7 +249,8 @@
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been
+                      having.</div>
                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                   </div>
                 </a>
@@ -249,7 +260,8 @@
                     <div class="status-indicator"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them
+                      sent to you?</div>
                     <div class="small text-gray-500">Jae Chun · 1d</div>
                   </div>
                 </a>
@@ -259,7 +271,8 @@
                     <div class="status-indicator bg-warning"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so
+                      far, keep up the good work!</div>
                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                   </div>
                 </a>
@@ -269,7 +282,8 @@
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people
+                      say this to all dogs, even if they aren't good...</div>
                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                   </div>
                 </a>
@@ -281,7 +295,8 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="agentName">Admin</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
@@ -315,7 +330,7 @@
                   </div>
 
                   <div class="form-group">
-                    <input type="text" class="form-control "  id="totalAmount" placeholder="Amount">
+                    <input type="text" class="form-control " id="totalAmount" placeholder="Amount">
                   </div>
                   <!-- <div class="form-group">
                     <input type="text" class="form-control " onchange="calculateTotal()" id="profit" placeholder="Profit">
@@ -334,32 +349,32 @@
                     <input type="text" class="form-control " id="paymentMethod" placeholder="Payment Menthod">
                   </div>
 
-                  </div>
-
-
-                  <div class="center">
-                    <a  href="#" onclick="validateForm()" id="registerButton"class="btn btn-primary">
-                      Add
-                    </a>
-                  </div>
-
-                  <hr>
-
-                </form>
-
-
               </div>
+
+
+              <div class="center">
+                <a href="#" onclick="validateForm()" id="registerButton" class="btn btn-primary">
+                  Add
+                </a>
+              </div>
+
+              <hr>
+
+              </form>
+
+
             </div>
           </div>
-
         </div>
+
       </div>
-      <!-- End of Main Content -->
-
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Main Content -->
+
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
 
@@ -375,93 +390,94 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <script>
-  function calculateTotal() {
-    var cost = document.getElementById("cost").value;
-    if(cost == null || cost == ""){
-      cost = 0;
-    }
+    function calculateTotal() {
+      var cost = document.getElementById("cost").value;
+      if (cost == null || cost == "") {
+        cost = 0;
+      }
 
-    var profit = document.getElementById("profit").value;
-    if(profit == null || profit == ""){
-      profit = 0;
-    }
+      var profit = document.getElementById("profit").value;
+      if (profit == null || profit == "") {
+        profit = 0;
+      }
 
-    var total = +cost + +profit;
-    document.getElementById("totalAmount").value = total;
-    // document.getElementById("demo").innerHTML = "You selected: " + x;
-  }
+      var total = +cost + +profit;
+      document.getElementById("totalAmount").value = total;
+      // document.getElementById("demo").innerHTML = "You selected: " + x;
+    }
   </script>
 
   <script>
-  var imageUrl = "";
-  var bannerUrl = "";
-  function validateForm() {
+    var imageUrl = "";
+    var bannerUrl = "";
+    function validateForm() {
 
-var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
-    var isDataValid = true;
+      var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
+      var isDataValid = true;
 
-    var date = document.getElementById("date").value;
-    var amount = document.getElementById("totalAmount").value;
-    // var profit = document.getElementById("profit").value;
-    // var cost = document.getElementById("cost").value;
-    var paymentMethod = document.getElementById("paymentMethod").value;
-    var transactionTypeSelected = "Credit";
+      var date = document.getElementById("date").value;
+      var amount = document.getElementById("totalAmount").value;
+      // var profit = document.getElementById("profit").value;
+      // var cost = document.getElementById("cost").value;
+      var paymentMethod = document.getElementById("paymentMethod").value;
+      var transactionTypeSelected = "Credit";
 
 
 
-    if (date == "") {
-      alert("Date must be filled out");
-      isDataValid = false;
-    }  if (amount == "") {
-      alert("Please enter amount");
-      isDataValid = false;
-    }
+      if (date == "") {
+        alert("Date must be filled out");
+        isDataValid = false;
+      } if (amount == "") {
+        alert("Please enter amount");
+        isDataValid = false;
+      }
       else if (paymentMethod == "") {
-      alert("Please enter payment method");
-      isDataValid = false;
+        alert("Please enter payment method");
+        isDataValid = false;
+      }
+
+      console.log(isDataValid);
+
+
+      if (isDataValid == false) {
+        return;
+      } else {
+        var selectedUser = JSON.parse(window.localStorage.getItem('selectedUser'));
+
+        const depositDb = db.child(selectedUser.phone);
+
+        depositDb.push({
+          date: date,
+          creditAmount: amount,
+          paymentMethod: paymentMethod,
+          transactionType: transactionTypeSelected,
+          cost: 0,
+          profit: 0
+        });
+
+        window.open('account.html', '_self', false)
+
+
+
+      }
     }
-
-    console.log(isDataValid);
-
-
-    if(isDataValid == false){
-      return;
-    } else {
-      var selectedUser = JSON.parse(window.localStorage.getItem('selectedUser'));
-
-      const depositDb = db.child(selectedUser.phone);
-
-      depositDb.push({
-       date: date,
-       creditAmount: amount,
-       paymentMethod: paymentMethod,
-       transactionType: transactionTypeSelected,
-       cost: 0,
-       profit: 0
-      });
-
-      window.open ('account.html','_self',false)
-
-
-
-    }
-  }
   </script>
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
 
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-analytics.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 
   <script>
     // Your web app's Firebase configuration
@@ -477,6 +493,18 @@ var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    firebase.auth().signInWithEmailAndPassword(agentEmail, agentPass)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log("User authenticated successfully.");
+
+        // Access the Realtime Database
+
+      })
+      .catch((error) => {
+        console.error("Error authenticating user: ", error);
+      });
     const db = firebase.database().ref().child("deposits");
     document.getElementById('date').valueAsDate = new Date();
 

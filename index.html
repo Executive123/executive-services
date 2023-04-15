@@ -34,14 +34,14 @@
          }
       </style>
       <script>
-         var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
-         var loggedInStatus = (window.localStorage.getItem('agentStatus'));
+        var agentEmail = (window.localStorage.getItem('agentEmail'));
+    var agentPass = (window.localStorage.getItem('agentpass'));
+    var loggedInStatus = (window.localStorage.getItem('agentStatus'));
 
-         if(loggedInUser == null){
-           alert("Please log in to continue");
-           window.open ('login.html','_self',false)
-         }
-
+    if(agentEmail == null){
+      alert("Please log in to continue");
+      window.open ('login.html','_self',false)
+    }
 
       </script>
    </head>
@@ -402,7 +402,7 @@
                         + currentdate.getSeconds();
 
                         db.set({
-                          author: loggedInUser.name,
+                          author: 'admin',
                           date:datetime,
                           content:document.getElementById("inputBoard").value,
                         });
@@ -420,7 +420,7 @@
                         + currentdate.getSeconds();
 
                         db2.set({
-                          author: loggedInUser.name,
+                          author: 'admin',
                           date:datetime,
                           content:document.getElementById("inputBoard2").value,
                         });
@@ -439,7 +439,7 @@
                         + currentdate.getSeconds();
 
                         db3.set({
-                          author: loggedInUser.name,
+                          author: 'admin',
                           date:datetime,
                           content:document.getElementById("inputBoard3").value,
                         });

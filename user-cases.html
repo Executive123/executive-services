@@ -13,43 +13,45 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <style>
-  <style>
-.alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
-}
+    <style>.alert {
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+    }
 
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-.closebtn:hover {
-  color: black;
-}
-</style>
+    .closebtn:hover {
+      color: black;
+    }
+  </style>
 
-<script>
-  var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
-  var loggedInStatus = (window.localStorage.getItem('agentStatus'));
+  <script>
+    var agentEmail = (window.localStorage.getItem('agentEmail'));
+    var agentPass = (window.localStorage.getItem('agentpass'));
+    var loggedInStatus = (window.localStorage.getItem('agentStatus'));
 
-  if(loggedInUser == null){
-    alert("Please log in to continue");
-    window.open ('login.html','_self',false)
-  }
-</script>
+    if (agentEmail == null) {
+      alert("Please log in to continue");
+      window.open('login.html', '_self', false)
+    }
+  </script>
 </head>
 
 <body id="page-top">
@@ -72,9 +74,9 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
       <li class="nav-item">
-         <a class="nav-link" href="index.html">
-         <i class="fas fa-clipboard-list"></i>
-         <span>Blackboard</span></a>
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-clipboard-list"></i>
+          <span>Blackboard</span></a>
       </li>
       <hr class="sidebar-divider">
       <!-- Heading -->
@@ -163,14 +165,17 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -183,13 +188,15 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1" hidden>
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -232,13 +239,15 @@
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1" hidden>
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
                 <span class="badge badge-danger badge-counter">7</span>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
@@ -248,7 +257,8 @@
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been
+                      having.</div>
                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                   </div>
                 </a>
@@ -258,7 +268,8 @@
                     <div class="status-indicator"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them
+                      sent to you?</div>
                     <div class="small text-gray-500">Jae Chun · 1d</div>
                   </div>
                 </a>
@@ -268,7 +279,8 @@
                     <div class="status-indicator bg-warning"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so
+                      far, keep up the good work!</div>
                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                   </div>
                 </a>
@@ -278,7 +290,8 @@
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people
+                      say this to all dogs, even if they aren't good...</div>
                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                   </div>
                 </a>
@@ -290,7 +303,8 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="agentName">Admin</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
@@ -317,11 +331,16 @@
           <h1 class="h3 mb-2 text-gray-800">Services</h1>
           <div id="userInfo" class="alert alert-success" style="display: none">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Number: </strong><p id="customerNumber"></p>
-            <strong>State: </strong><p id="customerState"></p>
-            <strong>Note 1: </strong><p id="customerNote1"></p>
-            <strong>Note 2: </strong><p id="customerNote2"></p>
-            <strong>Note 3: </strong><p id="customerNote3"></p>
+            <strong>Number: </strong>
+            <p id="customerNumber"></p>
+            <strong>State: </strong>
+            <p id="customerState"></p>
+            <strong>Note 1: </strong>
+            <p id="customerNote1"></p>
+            <strong>Note 2: </strong>
+            <p id="customerNote2"></p>
+            <strong>Note 3: </strong>
+            <p id="customerNote3"></p>
           </div>
 
           <!-- DataTales Example -->
@@ -387,7 +406,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -422,7 +442,7 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-</script>
+  </script>
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
@@ -434,78 +454,91 @@
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
 
-<script>
-document.getElementById("agentName").innerHTML = loggedInUser.name;
+  <script>
+    document.getElementById("agentName").innerHTML = 'admin';
 
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
-  authDomain: "eedc-e65c8.firebaseapp.com",
-  databaseURL: "https://eedc-e65c8.firebaseio.com",
-  projectId: "eedc-e65c8",
-  storageBucket: "eedc-e65c8.appspot.com",
-  messagingSenderId: "393595658709",
-  appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
-  measurementId: "G-RT3T2CXV9K"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
+      authDomain: "eedc-e65c8.firebaseapp.com",
+      databaseURL: "https://eedc-e65c8.firebaseio.com",
+      projectId: "eedc-e65c8",
+      storageBucket: "eedc-e65c8.appspot.com",
+      messagingSenderId: "393595658709",
+      appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
+      measurementId: "G-RT3T2CXV9K"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().signInWithEmailAndPassword(agentEmail, agentPass)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log("User authenticated successfully.");
 
-const db = firebase.database().ref().child("cases");
+        // Access the Realtime Database
 
-db.once("value", function(snapshot) {
-  snapshot.forEach(function(child) {
-    if(selected.phone == child.val().customer.phone) {
-      var table = document.getElementById("userTable");
-        var row = table.insertRow(1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
+      })
+      .catch((error) => {
+        console.error("Error authenticating user: ", error);
+      });
+    var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
 
-        cell1.innerHTML = "<a id='viewCustomer' href='#'>"+child.val().customer.name+"</a>";
+    const db = firebase.database().ref().child("cases");
 
-        document.getElementById ("viewCustomer").addEventListener ("click", function() {
-          document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
-          document.getElementById("customerState").innerHTML = child.val().customer.state;
-          document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
-          document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
-          document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
-          document.getElementById("userInfo").style.display = "block";
+    db.once("value", function (snapshot) {
+      snapshot.forEach(function (child) {
+        if (selected.phone == child.val().customer.phone) {
+          var table = document.getElementById("userTable");
+          var row = table.insertRow(1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
 
-        }, false);
-        cell2.innerHTML =child.val().date;
-        cell3.innerHTML = child.val().emailNote;
-        cell4.innerHTML = child.val().agent.name;
+          cell1.innerHTML = "<a id='viewCustomer' href='#'>" + child.val().customer.name + "</a>";
 
+          document.getElementById("viewCustomer").addEventListener("click", function () {
+            document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
+            document.getElementById("customerState").innerHTML = child.val().customer.state;
+            document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
+            document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
+            document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
+            document.getElementById("userInfo").style.display = "block";
+
+          }, false);
+          cell2.innerHTML = child.val().date;
+          cell3.innerHTML = child.val().emailNote;
+          cell4.innerHTML = child.val().agent.name;
+
+        }
+
+
+
+
+
+
+      });
+
+
+      var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+
+    });
+  </script>
+
+  <script>
+    function logoutCall() {
+      window.localStorage.clear();
+      window.open('login.html', '_self', false)
     }
-
-
-
-
-
-
-  });
-
-
-  var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
-
-
-});
-</script>
-
-<script>
-function logoutCall() {
-  window.localStorage.clear();
-  window.open ('login.html','_self',false)
-}
-</script>
+  </script>
 
 </body>
 

@@ -351,7 +351,7 @@
                     <textarea class="form-control" id="emailNote" name="emailNote" rows="6" cols="50"
                       placeholder="Email Note"></textarea>
                   </div>
-                  <div class="form-group">
+                  <div hidden class="form-group">
                     <select class="form-control" id="agent">
                       <option value="" disabled selected>Assign Agent</option>
                     </select>
@@ -366,7 +366,7 @@
                   <div class="form-group">
                     <input type="number" class="form-control" id="totalAmount" disabled placeholder="Total Amount">
                   </div>
-                  <div class="form-group">
+                  <div hidden class="form-group">
                     <select class="form-control" id="status">
                       <option value="" disabled selected>Set Status</option>
                       <option value="Open">Open</option>
@@ -469,7 +469,8 @@
       var date = document.getElementById("date").value;
       var emailNote = document.getElementById("emailNote").value;
 
-      var agentSelected = document.getElementById('agent');
+      //var agentSelected = document.getElementById('agent');
+      agentSelected = 'admin';
       var agentSelectedIndex = agentSelected.options[agentSelected.selectedIndex].value;
 
       var statusSelected = document.getElementById('status');
@@ -491,15 +492,7 @@
         alert("Please enter email note");
         isDataValid = false;
         return;
-      } else if (agentSelected == "") {
-        alert("Please select agent");
-        isDataValid = false;
-        return;
-      } else if (statusValue == "") {
-        alert("Please select status");
-        isDataValid = false;
-        return;
-      }
+      } 
 
 
       var currentdate = new Date();
@@ -566,8 +559,8 @@
                       customer: usersArray[customerSelectedIndex],
                       date: date,
                       emailNote: emailNote,
-                      agent: agentsArray[agentSelectedIndex],
-                      status: statusValue,
+                      agent: agentSelected,
+                      status: 'open',
                       fileUrl: url,
                       cost: cost,
                       profit: profit,
@@ -613,8 +606,8 @@
             customer: usersArray[customerSelectedIndex],
             date: date,
             emailNote: emailNote,
-            agent: agentsArray[agentSelectedIndex],
-            status: statusValue,
+            agent: agentSelected,
+            status: 'open',
             cost: cost,
             profit: profit,
             totalAmount: totalAmount,

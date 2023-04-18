@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>CS Data - Cases</title>
-      <!-- Custom fonts for this template-->
-      <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-      <!-- Custom styles for this template-->
-      <link href="css/sb-admin-2.min.css" rel="stylesheet">
-      <style>
-      <style>
-         .alert {
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>CS Data - Cases</title>
+   <!-- Custom fonts for this template-->
+   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+   <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+   <!-- Custom styles for this template-->
+   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+   <style>
+      <style>.alert {
          padding: 20px;
          background-color: #f44336;
          color: white;
-         }
-         .closebtn {
+      }
+
+      .closebtn {
          margin-left: 15px;
          color: white;
          font-weight: bold;
@@ -28,26 +31,28 @@
          line-height: 20px;
          cursor: pointer;
          transition: 0.3s;
-         }
-         .closebtn:hover {
+      }
+
+      .closebtn:hover {
          color: black;
-         }
-      </style>
-      <script>
-         var loggedInUser = JSON.parse(window.localStorage.getItem('agentData'));
-         var loggedInStatus = (window.localStorage.getItem('agentStatus'));
+      }
+   </style>
+   <script>
+      var agentEmail = (window.localStorage.getItem('agentEmail'));
+      var agentPass = (window.localStorage.getItem('agentpass'));
+      var loggedInStatus = (window.localStorage.getItem('agentStatus'));
 
-         if(loggedInUser == null){
-           alert("Please log in to continue");
-           window.open ('login.html','_self',false)
-         }
+      if (agentEmail == null) {
+         alert("Please log in to continue");
+         window.open('login.html', '_self', false)
+      }
 
+   </script>
+</head>
 
-      </script>
-   </head>
-   <body id="page-top">
-      <!-- Page Wrapper -->
-      <div id="wrapper">
+<body id="page-top">
+   <!-- Page Wrapper -->
+   <div id="wrapper">
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
          <!-- Sidebar - Brand -->
@@ -61,15 +66,15 @@
          <hr class="sidebar-divider">
          <li class="nav-item">
             <a class="nav-link" href="index.html">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Blackboard</span></a>
+               <i class="fas fa-clipboard-list"></i>
+               <span>Blackboard</span></a>
          </li>
          <hr class="sidebar-divider">
 
          <li class="nav-item active">
-           <a class="nav-link" href="transactions.html">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Transactions</span></a>
+            <a class="nav-link" href="transactions.html">
+               <i class="fas fa-clipboard-list"></i>
+               <span>Transactions</span></a>
          </li>
          <hr class="sidebar-divider">
          <!-- Heading -->
@@ -79,13 +84,13 @@
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item">
             <a class="nav-link" href="add-customer.html">
-            <i class="fas fa-user-plus"></i>
-            <span>Add User</span></a>
+               <i class="fas fa-user-plus"></i>
+               <span>Add User</span></a>
          </li>
          <li class="nav-item">
             <a class="nav-link" href="customers.html">
-            <i class="fas fa-user-friends"></i>
-            <span>View Users</span></a>
+               <i class="fas fa-user-friends"></i>
+               <span>View Users</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider d-none d-md-block">
@@ -95,13 +100,13 @@
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item">
             <a class="nav-link" href="add-case.html">
-            <i class="fas fa-briefcase-medical"></i>
-            <span>Add Service</span></a>
+               <i class="fas fa-briefcase-medical"></i>
+               <span>Add Service</span></a>
          </li>
          <li class="nav-item">
             <a class="nav-link" href="cases.html">
-            <i class="fas fa-briefcase"></i>
-            <span>View Services</span></a>
+               <i class="fas fa-briefcase"></i>
+               <span>View Services</span></a>
          </li>
          <hr class="sidebar-divider d-none d-md-block">
          <div class="sidebar-heading">
@@ -110,13 +115,13 @@
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item">
             <a class="nav-link" href="add-agent.html">
-            <i class="fas fa-address-card"></i>
-            <span>Add Agents</span></a>
+               <i class="fas fa-address-card"></i>
+               <span>Add Agents</span></a>
          </li>
          <li class="nav-item">
             <a class="nav-link" href="agents.html">
-            <i class="fas fa-people-arrows"></i>
-            <span>View Agents</span></a>
+               <i class="fas fa-people-arrows"></i>
+               <span>View Agents</span></a>
          </li>
          <!-- Sidebar Toggler (Sidebar) -->
          <div class="text-center d-none d-md-inline">
@@ -132,23 +137,26 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                <!-- Sidebar Toggle (Topbar) -->
                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-               <i class="fa fa-bars"></i>
+                  <i class="fa fa-bars"></i>
                </button>
                <!-- Topbar Navbar -->
                <ul class="navbar-nav ml-auto">
                   <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                   <li class="nav-item dropdown no-arrow d-sm-none">
-                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <i class="fas fa-search fa-fw"></i>
+                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
                      </a>
                      <!-- Dropdown - Messages -->
-                     <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                     <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
                         <form class="form-inline mr-auto w-100 navbar-search">
                            <div class="input-group">
-                              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                              <input type="text" class="form-control bg-light border-0 small"
+                                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                               <div class="input-group-append">
                                  <button class="btn btn-primary" type="button">
-                                 <i class="fas fa-search fa-sm"></i>
+                                    <i class="fas fa-search fa-sm"></i>
                                  </button>
                               </div>
                            </div>
@@ -157,13 +165,15 @@
                   </li>
                   <!-- Nav Item - Alerts -->
                   <li class="nav-item dropdown no-arrow mx-1" hidden>
-                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
                         <span class="badge badge-danger badge-counter">3+</span>
                      </a>
                      <!-- Dropdown - Alerts -->
-                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="alertsDropdown">
                         <h6 class="dropdown-header">
                            Alerts Center
                         </h6>
@@ -205,13 +215,15 @@
                   </li>
                   <!-- Nav Item - Messages -->
                   <li class="nav-item dropdown no-arrow mx-1" hidden>
-                     <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-envelope fa-fw"></i>
                         <!-- Counter - Messages -->
                         <span class="badge badge-danger badge-counter">7</span>
                      </a>
                      <!-- Dropdown - Messages -->
-                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="messagesDropdown">
                         <h6 class="dropdown-header">
                            Message Center
                         </h6>
@@ -221,7 +233,8 @@
                               <div class="status-indicator bg-success"></div>
                            </div>
                            <div class="font-weight-bold">
-                              <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                              <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've
+                                 been having.</div>
                               <div class="small text-gray-500">Emily Fowler · 58m</div>
                            </div>
                         </a>
@@ -231,7 +244,8 @@
                               <div class="status-indicator"></div>
                            </div>
                            <div>
-                              <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                              <div class="text-truncate">I have the photos that you ordered last month, how would you
+                                 like them sent to you?</div>
                               <div class="small text-gray-500">Jae Chun · 1d</div>
                            </div>
                         </a>
@@ -241,7 +255,8 @@
                               <div class="status-indicator bg-warning"></div>
                            </div>
                            <div>
-                              <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                              <div class="text-truncate">Last month's report looks great, I am very happy with the
+                                 progress so far, keep up the good work!</div>
                               <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                            </div>
                         </a>
@@ -251,7 +266,8 @@
                               <div class="status-indicator bg-success"></div>
                            </div>
                            <div>
-                              <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                              <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me
+                                 that people say this to all dogs, even if they aren't good...</div>
                               <div class="small text-gray-500">Chicken the Dog · 2w</div>
                            </div>
                         </a>
@@ -261,16 +277,18 @@
                   <div class="topbar-divider d-none d-sm-block"></div>
                   <!-- Nav Item - User Information -->
                   <li class="nav-item dropdown no-arrow">
-                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="agentName">Admin</span>
-                     <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="agentName">Admin</span>
+                        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                      </a>
                      <!-- Dropdown - User Information -->
-                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="userDropdown">
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Logout
                         </a>
                      </div>
                   </li>
@@ -296,17 +314,19 @@
                </div>
                <div id="filterForm" style="display: none">
                   <form>
-                  <div class="form-group">
-                     <input placeholder="Start Date"class="form-control" type="text" onfocus="(this.type='date')" id="startDate">
-                  </div>
-                  <div class="form-group">
-                     <input placeholder="End Date"class="form-control" type="text" onfocus="(this.type='date')" id="endDate">
-                  </div>
+                     <div class="form-group">
+                        <input placeholder="Start Date" class="form-control" type="text" onfocus="(this.type='date')"
+                           id="startDate">
+                     </div>
+                     <div class="form-group">
+                        <input placeholder="End Date" class="form-control" type="text" onfocus="(this.type='date')"
+                           id="endDate">
+                     </div>
                </div>
                <br>
                <div class="center">
-                  <a  href="#" onclick="showFilter()" id="filterButton"class="btn btn-primary">
-                  Add Filter
+                  <a href="#" onclick="showFilter()" id="filterButton" class="btn btn-primary">
+                     Add Filter
                   </a><br><br>
                   <!-- DataTales Example -->
                   <div class="card shadow mb-4">
@@ -361,16 +381,17 @@
       <!-- End of Page Wrapper -->
       <!-- Scroll to Top Button-->
       <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
+         <i class="fas fa-angle-up"></i>
       </a>
       <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
+                     <span aria-hidden="true">×</span>
                   </button>
                </div>
                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -385,113 +406,113 @@
          var isFilterShown = false;
          function showFilter() {
 
-           if(isFilterShown){
+            if (isFilterShown) {
 
                var startDate = document.getElementById("startDate").value;
                var endDate = document.getElementById("endDate").value;
 
-               if(startDate == ""){
-                 alert("please enter start date");
-                 return
+               if (startDate == "") {
+                  alert("please enter start date");
+                  return
                }
-               if(endDate == ""){
-                 alert("please enter end date");
-                 return
+               if (endDate == "") {
+                  alert("please enter end date");
+                  return
                }
                var table = document.getElementById("userTable");
 
                while (table.rows.length > 1) {
-               table.deleteRow(1);
+                  table.deleteRow(1);
                }
 
 
 
-                            var table = document.getElementById("userTable");
-                              var row = table.insertRow(1);
-                              var cell1 = row.insertCell(0);
-                              var cell2 = row.insertCell(1);
-                              var cell3 = row.insertCell(2);
-                              var cell4 = row.insertCell(3);
-                              var cell5 = row.insertCell(4);
+               var table = document.getElementById("userTable");
+               var row = table.insertRow(1);
+               var cell1 = row.insertCell(0);
+               var cell2 = row.insertCell(1);
+               var cell3 = row.insertCell(2);
+               var cell4 = row.insertCell(3);
+               var cell5 = row.insertCell(4);
 
 
 
 
 
-                        var transactionCount = 0;
-                        var totalCredit = 0;
-                        var totalDebit = 0;
-                        var totalCost = 0;
-                        var totalProfit = 0;
-                        const db = firebase.database().ref().child("deposits");
+               var transactionCount = 0;
+               var totalCredit = 0;
+               var totalDebit = 0;
+               var totalCost = 0;
+               var totalProfit = 0;
+               const db = firebase.database().ref().child("deposits");
 
-                        startDate = Date.parse(startDate);
-                        endDate = Date.parse(endDate);
-                        db.once("value", function(snapshot) {
-                          snapshot.forEach(function(child) {
-                             console.log(child.key);
+               startDate = Date.parse(startDate);
+               endDate = Date.parse(endDate);
+               db.once("value", function (snapshot) {
+                  snapshot.forEach(function (child) {
+                     console.log(child.key);
 
-                             const tempDb = firebase.database().ref().child("deposits").child(child.key);
+                     const tempDb = firebase.database().ref().child("deposits").child(child.key);
 
 
-                             tempDb.once("value", function(snapshot) {
-                               snapshot.forEach(function(subChild) {
-                                 var transactionDate = Date.parse(subChild.val().date);
+                     tempDb.once("value", function (snapshot) {
+                        snapshot.forEach(function (subChild) {
+                           var transactionDate = Date.parse(subChild.val().date);
 
-                                 // alert(transactionDate);
-                                 if( transactionDate > startDate && transactionDate <= endDate){
-                                   transactionCount = transactionCount + 1;
-                                  cell1.innerHTML =transactionCount;
+                           // alert(transactionDate);
+                           if (transactionDate > startDate && transactionDate <= endDate) {
+                              transactionCount = transactionCount + 1;
+                              cell1.innerHTML = transactionCount;
 
-                                 if(subChild.val().transactionType == "Credit"){
-                                  totalCredit = +totalCredit + +subChild.val().cost + +subChild.val().profit;
-                                  cell2.innerHTML =totalCredit;
-                                }
+                              if (subChild.val().transactionType == "Credit") {
+                                 totalCredit = +totalCredit + +subChild.val().cost + +subChild.val().profit;
+                                 cell2.innerHTML = totalCredit;
+                              }
 
-                                if(subChild.val().transactionType == "Debit"){
+                              if (subChild.val().transactionType == "Debit") {
                                  totalDebit = +totalDebit + +subChild.val().cost + +subChild.val().profit;
-                                 cell3.innerHTML =totalDebit;
-                               }
+                                 cell3.innerHTML = totalDebit;
+                              }
 
-                               totalCost = +totalCost + +subChild.val().cost;
-                               cell4.innerHTML =totalCost;
+                              totalCost = +totalCost + +subChild.val().cost;
+                              cell4.innerHTML = totalCost;
 
-                               totalProfit = +totalProfit + +subChild.val().profit;
-                               cell5.innerHTML =totalProfit;
-               }
-
-                               });
-                             });
-
-                          });
-
-
+                              totalProfit = +totalProfit + +subChild.val().profit;
+                              cell5.innerHTML = totalProfit;
+                           }
 
                         });
+                     });
+
+                  });
 
 
 
-             isFilterShown = false;
-             document.getElementById("filterButton").innerHTML= "Add Filter";
-             document.getElementById("filterForm").style.display = 'none';
+               });
 
 
-           } else {
 
-             isFilterShown = true;
-             document.getElementById("filterButton").innerHTML= "Apply Filter";
-             document.getElementById("filterForm").style.display = 'block';
+               isFilterShown = false;
+               document.getElementById("filterButton").innerHTML = "Add Filter";
+               document.getElementById("filterForm").style.display = 'none';
 
 
-           }
+            } else {
+
+               isFilterShown = true;
+               document.getElementById("filterButton").innerHTML = "Apply Filter";
+               document.getElementById("filterForm").style.display = 'block';
+
+
+            }
          }
-          function addFilter() {
+         function addFilter() {
 
             var tempName = "";
             var isDataValid = true;
             var customerSelectedIndex = "";
             var customerSelected = document.getElementById('customer');
-            if(customerSelected != null){
+            if (customerSelected != null) {
                customerSelectedIndex = customerSelected.options[customerSelected.selectedIndex].value;
             }
 
@@ -503,7 +524,7 @@
 
             var statusSelected = document.getElementById('status');
             var statusValue = statusSelected.options[statusSelected.selectedIndex].value;
-           }
+         }
       </script>
       <!-- Bootstrap core JavaScript-->
       <script src="vendor/jquery/jquery.min.js"></script>
@@ -528,32 +549,45 @@
       <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-storage.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
       <script>
-         document.getElementById("agentName").innerHTML = loggedInUser.name;
+         document.getElementById("agentName").innerHTML = 'admin'
 
          // Your web app's Firebase configuration
          var firebaseConfig = {
-           apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
-           authDomain: "eedc-e65c8.firebaseapp.com",
-           databaseURL: "https://eedc-e65c8.firebaseio.com",
-           projectId: "eedc-e65c8",
-           storageBucket: "eedc-e65c8.appspot.com",
-           messagingSenderId: "393595658709",
-           appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
-           measurementId: "G-RT3T2C XV9K"
+            apiKey: "AIzaSyCxSTkPhcrwdYkYqj61tqYiC0Jet_5pOHk",
+            authDomain: "eedc-e65c8.firebaseapp.com",
+            databaseURL: "https://eedc-e65c8.firebaseio.com",
+            projectId: "eedc-e65c8",
+            storageBucket: "eedc-e65c8.appspot.com",
+            messagingSenderId: "393595658709",
+            appId: "1:393595658709:web:726e1c27e4b32b2cbfdd5c",
+            measurementId: "G-RT3T2C XV9K"
          };
          // Initialize Firebase
          firebase.initializeApp(firebaseConfig);
 
+         firebase.auth().signInWithEmailAndPassword(agentEmail, agentPass)
+            .then((userCredential) => {
+               // Signed in
+               var user = userCredential.user;
+               console.log("User authenticated successfully.");
 
+               // Access the Realtime Database
 
-             var table = document.getElementById("userTable");
-               var row = table.insertRow(1);
-               var cell1 = row.insertCell(0);
-               var cell2 = row.insertCell(1);
-               var cell3 = row.insertCell(2);
-               var cell4 = row.insertCell(3);
-               var cell5 = row.insertCell(4);
+            })
+            .catch((error) => {
+               console.error("Error authenticating user: ", error);
+            });
+
+         var table = document.getElementById("userTable");
+         var row = table.insertRow(1);
+         var cell1 = row.insertCell(0);
+         var cell2 = row.insertCell(1);
+         var cell3 = row.insertCell(2);
+         var cell4 = row.insertCell(3);
+         var cell5 = row.insertCell(4);
 
 
 
@@ -566,49 +600,50 @@
          var totalProfit = 0;
          const db = firebase.database().ref().child("deposits");
 
-         db.once("value", function(snapshot) {
-           snapshot.forEach(function(child) {
-              console.log(child.key);
+         db.once("value", function (snapshot) {
+            snapshot.forEach(function (child) {
+               console.log(child.key);
 
-              const tempDb = firebase.database().ref().child("deposits").child(child.key);
+               const tempDb = firebase.database().ref().child("deposits").child(child.key);
 
-              tempDb.once("value", function(snapshot) {
-                snapshot.forEach(function(subChild) {
-                   transactionCount = transactionCount + 1;
-                   cell1.innerHTML =transactionCount;
+               tempDb.once("value", function (snapshot) {
+                  snapshot.forEach(function (subChild) {
+                     transactionCount = transactionCount + 1;
+                     cell1.innerHTML = transactionCount;
 
-                  if(subChild.val().transactionType == "Credit"){
-                   totalCredit = +totalCredit + +subChild.val().cost + +subChild.val().profit;
-                   cell2.innerHTML =totalCredit;
-                 }
+                     if (subChild.val().transactionType == "Credit") {
+                        totalCredit = +totalCredit + +subChild.val().cost + +subChild.val().profit;
+                        cell2.innerHTML = totalCredit;
+                     }
 
-                 if(subChild.val().transactionType == "Debit"){
-                  totalDebit = +totalDebit + +subChild.val().cost + +subChild.val().profit;
-                  cell3.innerHTML =totalDebit;
-                }
+                     if (subChild.val().transactionType == "Debit") {
+                        totalDebit = +totalDebit + +subChild.val().cost + +subChild.val().profit;
+                        cell3.innerHTML = totalDebit;
+                     }
 
-                totalCost = +totalCost + +subChild.val().cost;
-                cell4.innerHTML =totalCost;
+                     totalCost = +totalCost + +subChild.val().cost;
+                     cell4.innerHTML = totalCost;
 
-                totalProfit = +totalProfit + +subChild.val().profit;
-                cell5.innerHTML =totalProfit;
-
-
-                });
-              });
-
-           });
+                     totalProfit = +totalProfit + +subChild.val().profit;
+                     cell5.innerHTML = totalProfit;
 
 
-           // var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                  });
+               });
+
+            });
+
+
+            // var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 
          });
       </script>
       <script>
          function logoutCall() {
-           window.localStorage.clear();
-           window.open ('login.html','_self',false)
+            window.localStorage.clear();
+            window.open('login.html', '_self', false)
          }
       </script>
-   </body>
+</body>
+
 </html>

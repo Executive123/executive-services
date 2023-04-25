@@ -510,7 +510,7 @@ firebase.auth().signInWithEmailAndPassword(agentEmail, agentPass)
     console.error("Error authenticating user: ", error);
   });
 var selected = JSON.parse(window.localStorage.getItem('selectedUser'));
-
+console.log(selected);
 const db = firebase.database().ref().child("deposits").child(selected.phone);
 var total = 0;
 var cost = 0;

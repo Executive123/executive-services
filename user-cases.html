@@ -356,16 +356,30 @@
                       <th>Customer</th>
                       <th>Date</th>
                       <th>Notes</th>
+                      <th>Cost</th>
+                      <th>Profit</th>
+                      <th>Total</th>
                       <th>Agent</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
+                      <th>Status</th>
+                      <th>Close Date</th>
+                      <th>Atatchment</th>
+                      <th>Edit</th>
+                   </tr>
+                </thead>
+                <tfoot>
+                   <tr>
                       <th>Customer</th>
                       <th>Date</th>
                       <th>Notes</th>
+                      <th>Cost</th>
+                      <th>Profit</th>
+                      <th>Total</th>
                       <th>Agent</th>
-                    </tr>
+                      <th>Status</th>
+                      <th>Close Date</th>
+                      <th>Atatchment</th>
+                      <th>Edit</th>
+                   </tr>
                   </tfoot>
                   <tbody>
 
@@ -495,27 +509,77 @@
     db.once("value", function (snapshot) {
       snapshot.forEach(function (child) {
         if (selected.phone == child.val().customer.phone) {
+          // var table = document.getElementById("userTable");
+          // var row = table.insertRow(1);
+          // var cell1 = row.insertCell(0);
+          // var cell2 = row.insertCell(1);
+          // var cell3 = row.insertCell(2);
+          // var cell4 = row.insertCell(3);
+
+          // cell1.innerHTML = "<a id='viewCustomer' href='#'>" + child.val().customer.name + "</a>";
+
+          // document.getElementById("viewCustomer").addEventListener("click", function () {
+          //   document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
+          //   document.getElementById("customerState").innerHTML = child.val().customer.state;
+          //   document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
+          //   document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
+          //   document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
+          //   document.getElementById("userInfo").style.display = "block";
+
+          // }, false);
+          // cell2.innerHTML = child.val().date;
+          // cell3.innerHTML = child.val().emailNote;
+          // cell4.innerHTML = child.val().agent.name;
+
           var table = document.getElementById("userTable");
-          var row = table.insertRow(1);
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          var cell4 = row.insertCell(3);
+                  var row = table.insertRow(1);
+                  var cell1 = row.insertCell(0);
+                  var cell2 = row.insertCell(1);
+                  var cell3 = row.insertCell(2);
+                  var cell4 = row.insertCell(3);
+                  var cell5 = row.insertCell(4);
+                  var cell6 = row.insertCell(5);
+                  var cell7 = row.insertCell(6);
+                  var cell8 = row.insertCell(7);
+                  var cell9 = row.insertCell(8);
+                  var cell10 = row.insertCell(9);
+                  var cell11 = row.insertCell(10);
+                  cell1.innerHTML = "<a id='viewCustomer' href='#'>" + child.val().customer.name + "</a>";
 
-          cell1.innerHTML = "<a id='viewCustomer' href='#'>" + child.val().customer.name + "</a>";
+                  document.getElementById("viewCustomer").addEventListener("click", function () {
+                     // document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
+                     // document.getElementById("customerState").innerHTML = child.val().customer.state;
+                     // document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
+                     // document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
+                     // document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
+                     // document.getElementById("userInfo").style.display = "block";
+                     localStorage.setItem("selectedUser",JSON.stringify(child.val().customer));
+                     window.open ('account.html','_self',false)
 
-          document.getElementById("viewCustomer").addEventListener("click", function () {
-            document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
-            document.getElementById("customerState").innerHTML = child.val().customer.state;
-            document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
-            document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
-            document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
-            document.getElementById("userInfo").style.display = "block";
+                  }, false);
+                  cell2.innerHTML = child.val().date;
+                  cell3.innerHTML = child.val().emailNote;
+                  cell4.innerHTML = child.val().cost;
+                  cell5.innerHTML = child.val().profit;
+                  cell6.innerHTML = child.val().totalAmount;
+                  cell7.innerHTML = child.val().agent.name;
+                  cell8.innerHTML = child.val().status;
+                  cell9.innerHTML = child.val().closeDate;
+                  cell10.innerHTML = child.val().fileUrl;
+                  if (child.val().fileUrl == null) {
+                     cell10.innerHTML = "No Attachment";
+                  } else {
+                     cell10.innerHTML = "<a id='viewAttachment' target='_blank' href='" + child.val().fileUrl + "'>View Attachment</a>"
+                  }
 
-          }, false);
-          cell2.innerHTML = child.val().date;
-          cell3.innerHTML = child.val().emailNote;
-          cell4.innerHTML = child.val().agent.name;
+                  cell11.innerHTML = "<a id='removeCase' href='#'>Edit Data</a>";
+                  document.getElementById("removeCase").addEventListener("click", function () {
+                     localStorage.setItem("selectedCase", JSON.stringify(child.val()));
+                     localStorage.setItem("selectedCaseKey", JSON.stringify(child.key));
+
+                     window.open('edit-case.html', '_self', false)
+                  }, false);
+
 
         }
 

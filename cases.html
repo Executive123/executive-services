@@ -515,12 +515,15 @@
                            cell1.innerHTML = "<a id='viewCustomer' href='#'>" + child.val().customer.name + "</a>";
 
                            document.getElementById("viewCustomer").addEventListener("click", function () {
-                              document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
-                              document.getElementById("customerState").innerHTML = child.val().customer.state;
-                              document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
-                              document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
-                              document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
-                              document.getElementById("userInfo").style.display = "block";
+                              console.log('basim');
+                              // document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
+                              // document.getElementById("customerState").innerHTML = child.val().customer.state;
+                              // document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
+                              // document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
+                              // document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
+                              // document.getElementById("userInfo").style.display = "block";
+                              localStorage.setItem("selectedUser",JSON.stringify(child.val()));
+                              window.open ('account.html','_self',false)
 
                            }, false);
                            cell2.innerHTML = child.val().date;
@@ -841,12 +844,14 @@
                   cell1.innerHTML = "<a id='viewCustomer' href='#'>" + child.val().customer.name + "</a>";
 
                   document.getElementById("viewCustomer").addEventListener("click", function () {
-                     document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
-                     document.getElementById("customerState").innerHTML = child.val().customer.state;
-                     document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
-                     document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
-                     document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
-                     document.getElementById("userInfo").style.display = "block";
+                     // document.getElementById("customerNumber").innerHTML = child.val().customer.phone;
+                     // document.getElementById("customerState").innerHTML = child.val().customer.state;
+                     // document.getElementById("customerNote1").innerHTML = child.val().customer.note1;
+                     // document.getElementById("customerNote2").innerHTML = child.val().customer.note2;
+                     // document.getElementById("customerNote3").innerHTML = child.val().customer.note3;
+                     // document.getElementById("userInfo").style.display = "block";
+                     localStorage.setItem("selectedUser",JSON.stringify(child.val().customer));
+                     window.open ('account.html','_self',false)
 
                   }, false);
                   cell2.innerHTML = child.val().date;

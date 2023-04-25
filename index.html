@@ -516,17 +516,17 @@
          // Initialize Firebase
          firebase.initializeApp(firebaseConfig);
          firebase.auth().signInWithEmailAndPassword(agentEmail, agentPass)
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        console.log("User authenticated successfully.");
+            .then((userCredential) => {
+               // Signed in
+               var user = userCredential.user;
+               console.log("User authenticated successfully.");
 
-        // Access the Realtime Database
+               // Access the Realtime Database
 
-      })
-      .catch((error) => {
-        console.error("Error authenticating user: ", error);
-      });
+            })
+            .catch((error) => {
+               console.error("Error authenticating user: ", error);
+            });
          const db = firebase.database().ref().child("Blackboard");
          const db2 = firebase.database().ref().child("Blackboard2");
          const db3 = firebase.database().ref().child("Blackboard3");

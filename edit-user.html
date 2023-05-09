@@ -18,9 +18,7 @@
     rel="stylesheet">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQxcHBZ1izt6OLyGRfhB5gP0dRc_xArhE&callback=initAutocomplete&libraries=places&v=weekly"
-    defer></script>
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <style>
@@ -53,7 +51,8 @@
     var agentEmail = (window.localStorage.getItem('agentEmail'));
     var agentPass = (window.localStorage.getItem('agentpass'));
     var loggedInStatus = (window.localStorage.getItem('agentStatus'));
-
+    var editUser = JSON.parse(window.localStorage.getItem('editUser'));
+    var editUserKey = JSON.parse(window.localStorage.getItem('editUserKey'));
     if (agentEmail == null) {
       alert("Please log in to continue");
       window.open('login.html', '_self', false)
